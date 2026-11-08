@@ -18,5 +18,10 @@ and $R$ are single-precision floats.
 
 **Variants**: (1) a C/C++ program version (2) a CUDA program version using a grid-stride loop without prefetch and without mem advise (3) a CUDA program version using a grid-stride loop with prefetching but without page creation and without mem advise (4) a CUDA program version using a grid-stride loop with prefetch, with page creation but without mem advise (5) a CUDA program version using a grid-stride loop with prefetch, with page creation and with mem advise. For each kernel, execute at least 30 times.
 
+
+### i) Screenshot of program output with execution time for all cases
+
+
+![Fig_1](image/image1.png)
 ## AI USAGE DECLARATION 
 Generative AI was not used in the development of the kernels outlined in this project.
