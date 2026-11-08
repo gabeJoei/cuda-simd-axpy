@@ -12,7 +12,7 @@ The kernel is to perform vector AXPY on vectors $A$ and $B$, placing the result 
 **Input**: Scalar variable $n$ (integer) contains the length of the vector; scalar variable $x$ (single-precision float). Vectors $A$
 and $R$ are single-precision floats.
 
-**Process**: $Z_i = a •X; + Y; for i = 0,1,...,n - 1$
+**Process**: $Z_i = a •X; + Y; /text{for} i = 0,1,...,n - 1$
 
 **Output**: store the result in vector $Z$. Display the execution time. the first 5. and the last 5 elements of vector $Z$ for verification across all 4 kernels.
 
