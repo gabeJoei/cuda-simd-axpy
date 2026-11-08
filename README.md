@@ -77,22 +77,22 @@ Figure 14. CUDA with Grid-stride Loop, prefetch, page creation, and memory advis
 Figure 15. CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^26)
 
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^27)](images/image15.jpeg)
-
 Figure 16. CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^27)
 
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (Boundary)](images/image16.jpeg)
-
 Figure 17. CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (Boundary)
 
 ## ii) Comparative Table
 
 ![Comparative Table](images/comparative_table.png)
+
 Figure 18. Comparative Table of Average Execution Time with size: 2^20, 2^26, and 2^27
 
 
 ## ii.a) Speedup comparisons of versions against C
 
 ![Speedup comparisons of versions against C](images/SpeedUp.png)
+
 Figure 19. Speed Up Comparisons of versions against C 
 
 ## AI USAGE DECLARATION 
