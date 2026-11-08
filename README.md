@@ -23,6 +23,7 @@ and $R$ are single-precision floats.
 
 **C Kernel Output**
 ![C_kernel output](images/image0.jpeg)
+Figure 1. C kernel output
 
 **CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise**
 
