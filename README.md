@@ -22,7 +22,7 @@ and $R$ are single-precision floats.
 ### i) Screenshot of program output with execution time for all cases
 
 
-![C_kernel output](images/image1.png)
+![C_kernel output](images/try.jpeg)
 
 ![Without prefetch, page creation, and memory advise](images/image2.png)
 ## AI USAGE DECLARATION 
