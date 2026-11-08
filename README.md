@@ -67,5 +67,14 @@ and $R$ are single-precision floats.
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^27)](images/image15.jpeg)
 **Boundary Check**
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (Boundary)](images/image16.jpeg)
+
+## ii) Comparative Table
+![Comparative Table](images/comparative_table.png)
+
+
+## ii.a) Speedup comparisons of versions against C
+![Speedup comparisons of versions against C](images/SpeedUp.png)
+
+
 ## AI USAGE DECLARATION 
 Generative AI was not used in the development of the kernels outlined in this project.
