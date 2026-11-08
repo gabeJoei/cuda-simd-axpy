@@ -21,27 +21,47 @@ and $R$ are single-precision floats.
 
 ## i) Screenshot of program output with execution time for all cases
 
-**Hi
+**C Kernel Output**
 ![C_kernel output](images/image0.jpeg)
 
+**CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise**
+**2^20**
 ![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^20)](images/image1.jpeg)
+**2^26**
 ![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^26)](images/image2.jpeg)
+**2^27**
 ![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^27)](images/image3.jpeg)
+**Boundary Check**
 ![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (Boundary)](images/image4.jpeg)
 
+**CUDA with Grid-stride Loop and prefetch and without page creation and memory advise**
+**2^20**
 ![CUDA with Grid-stride Loop and prefetch and without page creation and memory advise (2^20)](images/image5.jpeg)
+**2^26**
 ![CUDA with Grid-stride Loop and prefetch and without page creation and memory advise (2^26)](images/image6.jpeg)
+**2^27**
 ![CUDA with Grid-stride Loop and prefetch and without page creation and memory advise (2^27)](images/image7.jpeg)
+**Boundary Check**
 ![CUDA with Grid-stride Loop and prefetch and without page creation and memory advise (Boundary)](images/image8.jpeg)
 
+**CUDA with Grid-stride Loop, prefetch, and page creation and without memory advise**
+**2^20**
 ![CUDA with Grid-stride Loop, prefetch, and page creation and without memory advise (2^20)](images/image9.jpeg)
+**2^26**
 ![CUDA with Grid-stride Loop, prefetch, and page creation and without memory advise (2^26)](images/image10.jpeg)
+**2^27**
 ![CUDA with Grid-stride Loop, prefetch, and page creation and without memory advise (2^27)](images/image11.jpeg)
+**Boundary Check**
 ![CUDA with Grid-stride Loop, prefetch, and page creation and without memory advise (Boundary)](images/image12.jpeg)
 
+**CUDA with Grid-stride Loop, prefetch, page creation, and memory advise**
+**2^20**
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^20)](images/image13.jpeg)
+**2^26**
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^26)](images/image14.jpeg)
+**2^27**
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^27)](images/image15.jpeg)
+**Boundary Check**
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (Boundary)](images/image16.jpeg)
 ## AI USAGE DECLARATION 
 Generative AI was not used in the development of the kernels outlined in this project.
