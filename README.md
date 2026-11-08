@@ -77,9 +77,11 @@ Figure 14. CUDA with Grid-stride Loop, prefetch, page creation, and memory advis
 Figure 15. CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^26)
 
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^27)](images/image15.jpeg)
+
 Figure 16. CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^27)
 
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (Boundary)](images/image16.jpeg)
+
 Figure 17. CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (Boundary)
 
 ## ii) Comparative Table
