@@ -22,6 +22,6 @@ and $R$ are single-precision floats.
 ### i) Screenshot of program output with execution time for all cases
 
 
-![Fig_1](image/image1.png)
+![Fig_1](images/image1.png)
 ## AI USAGE DECLARATION 
 Generative AI was not used in the development of the kernels outlined in this project.
