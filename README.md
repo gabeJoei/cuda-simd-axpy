@@ -25,6 +25,7 @@ and $R$ are single-precision floats.
 ![C_kernel output](images/image0.jpeg)
 
 **CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise**
+
 **2^20**
 ![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^20)](images/image1.jpeg)
 **2^26**
@@ -35,6 +36,7 @@ and $R$ are single-precision floats.
 ![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (Boundary)](images/image4.jpeg)
 
 **CUDA with Grid-stride Loop and prefetch and without page creation and memory advise**
+
 **2^20**
 ![CUDA with Grid-stride Loop and prefetch and without page creation and memory advise (2^20)](images/image5.jpeg)
 **2^26**
@@ -45,6 +47,7 @@ and $R$ are single-precision floats.
 ![CUDA with Grid-stride Loop and prefetch and without page creation and memory advise (Boundary)](images/image8.jpeg)
 
 **CUDA with Grid-stride Loop, prefetch, and page creation and without memory advise**
+
 **2^20**
 ![CUDA with Grid-stride Loop, prefetch, and page creation and without memory advise (2^20)](images/image9.jpeg)
 **2^26**
@@ -55,6 +58,7 @@ and $R$ are single-precision floats.
 ![CUDA with Grid-stride Loop, prefetch, and page creation and without memory advise (Boundary)](images/image12.jpeg)
 
 **CUDA with Grid-stride Loop, prefetch, page creation, and memory advise**
+
 **2^20**
 ![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^20)](images/image13.jpeg)
 **2^26**
