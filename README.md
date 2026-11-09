@@ -126,6 +126,27 @@ Figure 18. Comparative Table of Average Execution Time with size: 2^20, 2^26, an
 ![Speedup comparisons of versions against C](images/SpeedUp.png)
 
 Figure 19. Speed Up Comparisons of versions against C 
+
+### iv.) Analysis of Results
+
+#### Analysis of kernel execution time
+
+Testing the execution time for vector sizes $2^{20}$, $2^{24}$, and $2^{27}$ was observed to follow a similar trend compared to the Baseline C program. For this reason, this section of the analysis will focus on the execution time across all kernels at vector size $2^{24}$. All analyses made for vector size $2^{24}$ should apply to $2^{20}$ and $2^{27}$. 
+
+First, we briefly discuss the speedup between C, x86-64, and the SIMD kernels. Among all kernels, it can be said that the XMM and YMM versions constantly outperforms the C version. This is because the XMM and YMM kernels can perform one AXPY calculation for 4 or 8 floats at the same time, which reduces the number of instructions needed to process the same amount of data. In a similar way, x86-64 is faster than C because it allows direct hardcoding to CPU registers without depending on a compiler. The execution time between C, and the x86-64 and SIMD kernels will remain constant throughout the analysis for vector size $2^{24}$. The C, x86-64, and SIMD kernels for vector sizes $2^{20}$ and $2^{27}$ follow the same execution time trend, whereas x86-64, XMM, and YMM versions are faster than C. However, the assembly kernels still only rely on the CPU. 
+
+Next, we move on to the analysis of execution time of the CUDA kernels wherein the GPU is finally utilized for parallel processing. The CUDA unified memory without prefetching version is observed to have a 3.04ms to 3.50ms average execution time. However, the maximum execution time is observed to be significantly greater than the minimum execution time (i.e. 67ms-80ms from 0.80ms-0.84ms) because of the cost of demand-page faulting when relying on only unified memory. The first iteration of the kernel sequentially transfers individual page faults instead of one contiguous block, interrupting the GPU repeatedly and increasing the maximum latency spikes.
+
+Thus, implementing CUDA memory prefetching reduces the average execution time to 0.81ms to 0.84ms, delivering  a 54.78x to 57.03x speedup. CUDA memory prefetching eliminates the maximum latency spikes and moves the needed data to GPU memory before kernel launch instead of transferring them during execution sequentially. Meanwhile, implementing page creation and memory advice alongside memory prefetching allows the programmer to directly handle and specify memory allocations, allowing the CPU or GPU to access the same memory location without having to “cut” data and checking access and synchronization permissions. 
+
+All observations across vector sizes follow the same trend discussed above.
+
+#### Analysis of speed performance across all platforms
+
+The SIMD measurements were the same for all different block sizes as observed from the comparative table. This implies that the block sizes affect the execution time. Upon gradually increasing the block size from 256 to 1024, it can be observed that the speedup of each CUDA variant increases as the block size increases. To be exact, the speedup increase for each CUDA variant given respectively: CUDA unified, CUDA prefetch, CUDA prefetch+ page creation, and CUDA prefetch + page creation + memadvise, from a block size of 256 to a block size of 1024 is 1.15x 1.04x 1.03x 1.03x. The recommended block size given this collection of speedups is a block size of 1024 while implementing prefetch, page creation, and memadvise. The speedup is massive compared to the fastest speed up we acquired from the SIMD platform of 3.21x, racking up a speedup between the platforms of 17.77x. 
+
+Though, if it were compared to a CUDA variant of just CUDA unified and the fastest speedup among the SIMD platform, the speedup only goes up to about 5.08x. While this is still fast, this proves the importance of recommending an always prefetching approach. If CUDA is always managing the memory, it drastically reduces the speedup. A sample can be taken directly from the variant of CUDA unified against the CUDA prefetch testing against a block size of 1024, the speedup is observed to be 3.75x. This same pattern of increasing the speedup can be observed in all SIMT of varying block sizes, insinuating the importance of implementing prefetching. In conclusion, SIMT is faster than SIMD. 
+
 ### v.) Problems Encountered, Methodology, and AHA Moments
 
 #### Problem 1: Floating-Point Precision and Validation Errors
@@ -194,7 +215,7 @@ Additionally, the CUDA implementation uses grid-stride loops and experiments wit
 Overall, SIMD and SIMT both provide ways to exploit data parallelism. SIMD achieves this through vector instructions operating on multiple data elements, while SIMT distributes operations across multiple threads. In our project, the conventional C implementation serves as the CPU baseline, while CUDA demonstrates explicit SIMT parallelism and provides opportunities to investigate GPU memory-management optimizations.
 
 ## AI USAGE DECLARATION 
-Generative AI was not used in the development of the kernels outlined in this project.
+Generative AI was not used in the development of the kernels outlined in this project aside from the debugging of the problems encountered stated in section v.
 
 ## References
 
