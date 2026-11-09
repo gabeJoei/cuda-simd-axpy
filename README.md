@@ -95,5 +95,13 @@ Figure 18. Comparative Table of Average Execution Time with size: 2^20, 2^26, an
 
 Figure 19. Speed Up Comparisons of versions against C 
 
+## vi) Difference between SIMT and SIMD in handling Parallelism (WIP)
+
+SIMD (Single Instruction, Multiple Data) and SIMT (Single Instruction, Multiple Threads) are both approaches to parallel computing, but they handle parallel execution differently.
+
+SIMD executes a single instruction on multiple data elements simultaneously using vector registers. In our project, we implemented SIMD using XMM and YMM registers with x86-64 assembly and AVX2 instructions. Instead of processing one element at a time, the processor can perform the same operation on several elements within a single instruction. For example, an XMM register can process four single-precision floating-point values, while a YMM register can process eight.
+
+SIMT, on the other hand, executes multiple threads that follow the same instruction sequence on different data elements. In our CUDA implementation, each GPU thread processes an element of the vectors. Multiple threads are organized into blocks and executed by the GPU. We used a grid-stride loop to allow threads to process additional elements when the vector size exceeds the total number of available threads.
+
 ## AI USAGE DECLARATION 
 Generative AI was not used in the development of the kernels outlined in this project.
