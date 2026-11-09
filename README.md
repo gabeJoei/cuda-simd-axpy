@@ -42,19 +42,19 @@ Figure 4. C kernel output
 
 **CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise**
 
-![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^20)](image/image5_20_1.jpeg)
+![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^20)](image/imageFinal1.jpeg)
 
 Figure 5. CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (Array Size: 2^20, Block Size: 256, 512, 1024) 
 
-![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^24)](image/image1.jpeg)
+![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^24)](image/imageFinal2.jpeg)
 
 Figure 6. CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (Array Size: 2^24, Block Size: 256, 512, 1024) 
 
-![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^27)](image/image9_27_1.jpeg)
+![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^27)](image/imageFinal3.jpeg)
 
 Figure 7. CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (Array Size: 2^27, Block Size: 256, 512, 1024) 
 
-![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (Boundary)](image/image13_boundary_1.jpeg)
+![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (Boundary)](image/imageFinal4.jpeg)
 
 Figure 8. CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (Array Size: 1003, Block Size: 256, 512, 1024) 
 
