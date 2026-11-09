@@ -89,7 +89,7 @@ Figure 13. CUDA with Grid-stride Loop, prefetch, and page creation and without m
 
 Figure 14. CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (Array Size: 2^20, Block Size: 256, 512, 1024) 
 
-![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^24)](images/image4.jpeg)
+![CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (2^24)](image/image4.jpeg)
 
 Figure 15. CUDA with Grid-stride Loop, prefetch, page creation, and memory advise (Array Size: 2^24, Block Size: 256, 512, 1024) 
 
