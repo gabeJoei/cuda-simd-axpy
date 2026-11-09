@@ -22,7 +22,7 @@ and $R$ are single-precision floats.
 ## i) Screenshot of program output with execution time for all cases
 
 **C Kernel Output**
-![C_kernel output](images/image0.jpeg)
+![C_kernel output](image/image0.jpeg)
 Figure 1. C kernel output
 
 **CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise**
@@ -30,8 +30,8 @@ Figure 1. C kernel output
 ![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^20)](images/image1.jpeg)
 Figure 2. CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^20)
 
-![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^26)](images/image2.jpeg)
-Figure 3. CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^26)
+![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^26)](image/image2.jpeg)
+Figure 3. CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (Array Size: 2^24, Block Size: 256, 512, 1024) 
 
 ![CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^27)](images/image3.jpeg)
 Figure 4. CUDA with Grid-stride Loop and without prefetch, page creation, and memory advise (2^27)
