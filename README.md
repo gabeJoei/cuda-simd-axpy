@@ -126,8 +126,47 @@ Figure 18. Comparative Table of Average Execution Time with size: 2^20, 2^26, an
 ![Speedup comparisons of versions against C](images/SpeedUp.png)
 
 Figure 19. Speed Up Comparisons of versions against C 
+### v.) Problems Encountered, Methodology, and AHA Moments
 
-## vi) Difference between SIMT and SIMD in handling Parallelism (WIP)
+#### Problem 1: Floating-Point Precision and Validation Errors
+
+**Problem Encountered**
+
+During the validation of the CUDA AXPY implementation, we encountered approximately 6,850,695 mismatched results when processing a vector containing \(N = 2^{24}\) (16,777,216) elements. The issue was associated with the limitations of single-precision floating-point arithmetic, particularly when working with large numerical values and small fractional increments.
+
+A 32-bit `float` has 24 bits of significand precision, including the implicit leading bit, providing approximately 7 decimal digits of precision. As the vector indices increased, the spacing between representable floating-point values also increased. Consequently, small fractional values such as `0.0025f` would be lost when added to values in the millions. Differences in CPU and GPU floating-point calculations may have also contributed to the errors.
+
+**Methodology and Investigation**
+
+We examined the vector initialization and result-validation procedures in `helpers.h` to identify the possible causes of the mismatched outputs. The investigation focused on the numerical range of the input vectors, the precision limitations of the `float` data type, and the tolerance used when comparing expected and computed results. The original validation approach compared the absolute difference between the expected and actual results against a fixed tolerance. However, this approach can become overly restrictive for large floating-point values, where the magnitude of rounding error may increase with the magnitude of the computation.
+
+**Solution Implemented**
+
+To address the precision-related validation issue, we identified two approaches:
+
+1. **Relative error tolerance:** Replace the fixed absolute tolerance with a relative tolerance that scales with the magnitude of the expected result. This allows comparisons to account for floating-point rounding differences at different numerical scales.
+
+2. **Scaled vector initialization:** Limit the range of initialized vector values using a modulo operation, such as `i % 100`, while retaining fractional components. This keeps the input values within a smaller numerical range where single-precision arithmetic can represent small increments more accurately.
+
+The scaled initialization approach was preferred because it reduces precision loss in the test inputs while preserving the AXPY computation.
+
+---
+
+#### Problem 2: Separating CUDA Kernel Configurations for Profiling
+
+**Problem Encountered**
+
+During performance profiling, we encountered difficulties organizing and distinguishing the execution results of different CUDA kernel configurations. Since the implementation involved multiple block configurations, profiling them through repeated NVIDIA Nsight Systems (`nsys`) commands became repetitive and inconvenient. Running multiple configurations within the same program also made it more difficult to identify which profiling results corresponded to each configuration. This complicated the analysis of kernel execution behavior and the comparison of different block sizes.
+
+**Methodology and Investigation**
+
+We investigated how to organize the CUDA implementation so that individual configurations could be profiled without repeatedly modifying the source code or manually executing separate profiling commands. With the assistance of AI-based debugging and code suggestions, we explored C++ template specialization as a way to separate the execution paths of different kernel configurations. The approach involved defining template-based functions and using explicit specializations through `template<>` to distinguish the configurations during execution and profiling.
+
+**Solution Implemented**
+
+We applied C++ template specialization to organize the CUDA execution configurations into separate, identifiable functions. This allowed the different block configurations to be represented through distinct execution paths while retaining the same underlying AXPY computation. As a result, the configurations could be distinguished more clearly in NVIDIA Nsight Systems profiling output. This reduced the need to repeatedly invoke `nsys` through separate Bash commands and made the profiling workflow more organized.
+
+## vi) Difference between SIMT and SIMD in handling Parallelism
 
 SIMD (Single Instruction, Multiple Data) and SIMT (Single Instruction, Multiple Threads) are both approaches to parallel computing, but they differ in how instructions and data are processed.
 
@@ -164,3 +203,13 @@ Overall, SIMD and SIMT both provide ways to exploit data parallelism. SIMD achie
 
 ## AI USAGE DECLARATION 
 Generative AI was not used in the development of the kernels outlined in this project.
+
+## References
+
+Harris, M. (2013, March 18). *CUDA pro tip: Write flexible kernels with grid-stride loops*. NVIDIA Technical Blog. https://developer.nvidia.com/blog/cuda-pro-tip-write-flexible-kernels-grid-stride-loops/
+
+Intel. (n.d.). *Intel® 64 and IA-32 architectures software developer's manual*. Intel Corporation. https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
+
+NVIDIA. (n.d.-a). *CUDA C++ programming guide*. NVIDIA Corporation. https://docs.nvidia.com/cuda/cuda-c-programming-guide/
+
+NVIDIA. (n.d.-b). *CUDA C++ best practices guide*. NVIDIA Corporation. https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/
