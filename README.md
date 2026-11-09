@@ -6,6 +6,9 @@ Group 6 Members:
 - Shirley Lobo
 - Diane Benedict Panganiban
 
+## Link to Google Colab Project
+https://colab.research.google.com/drive/1CkXUQDpRrcHPSQC1JIH7yzjdPmmyHmuV?usp=sharing
+
 ## Project Specifications
 The kernel is to perform vector AXPY on vectors $A$ and $B$, placing the result in vector $Z$.
 
