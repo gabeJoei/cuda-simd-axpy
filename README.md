@@ -116,16 +116,41 @@ Figure 20. CUDA with Grid-stride Loop, prefetch, page creation, and memory advis
 
 ## ii) Comparative Table
 
-![Comparative Table](images/comparative_table.png)
+![Comparative Table (Array Size: 2^20 Block Size: 256)](image/comparative1.png)
 
-Figure 18. Comparative Table of Average Execution Time with size: 2^20, 2^26, and 2^27
+Figure 21. Comparative Table (Array Size: 2^20 Block Size: 256)
 
+![Comparative Table (Array Size: 2^20 Block Size: 512)](image/comparative2.png)
 
-## ii.a) Speedup comparisons of versions against C
+Figure 22. Comparative Table (Array Size: 2^20 Block Size: 512)
 
-![Speedup comparisons of versions against C](images/SpeedUp.png)
+![Comparative Table (Array Size: 2^20 Block Size: 1024)](image/comparative3.png)
 
-Figure 19. Speed Up Comparisons of versions against C 
+Figure 23. Comparative Table (Array Size: 2^20 Block Size: 1024)
+
+![Comparative Table (Array Size: 2^24 Block Size: 256)](image/comparative4.png)
+
+Figure 24. Comparative Table (Array Size: 2^24 Block Size: 256)
+
+![Comparative Table (Array Size: 2^24 Block Size: 512)](image/comparative5.png)
+
+Figure 25. Comparative Table (Array Size: 2^24 Block Size: 512)
+
+![Comparative Table (Array Size: 2^24 Block Size: 1024)](image/comparative6.png)
+
+Figure 26. Comparative Table (Array Size: 2^24 Block Size: 1024)
+
+![Comparative Table (Array Size: 2^20 Block Size: 256)](image/comparative7.png)
+
+Figure 27. Comparative Table (Array Size: 2^27 Block Size: 256)
+
+![Comparative Table (Array Size: 2^20 Block Size: 512)](image/comparative8.png)
+
+Figure 28. Comparative Table (Array Size: 2^27 Block Size: 512)
+
+![Comparative Table (Array Size: 2^20 Block Size: 1024)](image/comparative9.png)
+
+Figure 29. Comparative Table (Array Size: 2^27 Block Size: 1024)
 
 ### iv.) Analysis of Results
 
