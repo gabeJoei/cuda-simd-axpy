@@ -99,9 +99,22 @@ Figure 19. Speed Up Comparisons of versions against C
 
 SIMD (Single Instruction, Multiple Data) and SIMT (Single Instruction, Multiple Threads) are both approaches to parallel computing, but they handle parallel execution differently.
 
-SIMD executes a single instruction on multiple data elements simultaneously using vector registers. In our project, we implemented SIMD using XMM and YMM registers with x86-64 assembly and AVX2 instructions. Instead of processing one element at a time, the processor can perform the same operation on several elements within a single instruction. For example, an XMM register can process four single-precision floating-point values, while a YMM register can process eight.
+SIMD executes a single instruction on multiple data elements simultaneously using vector registers. In our project, we implemented SIMD using XMM and YMM registers with x86-64 assembly and AVX2 instructions. Instead of processing one element at a time, the processor can perform the same operation on several elements within a single instruction. For example, an XMM register can process four single-precision floating-point values, while a YMM register can process eight (Intel, n.d.).
 
-SIMT, on the other hand, executes multiple threads that follow the same instruction sequence on different data elements. In our CUDA implementation, each GPU thread processes an element of the vectors. Multiple threads are organized into blocks and executed by the GPU. We used a grid-stride loop to allow threads to process additional elements when the vector size exceeds the total number of available threads.
+SIMT, on the other hand, executes multiple threads that follow the same instruction sequence on different data elements. In our CUDA implementation, each GPU thread processes an element of the vectors. Multiple threads are organized into blocks and executed by the GPU. We used a grid-stride loop to allow threads to process additional elements when the vector size exceeds the total number of available threads (Nvidia, n.d.-a).
+
+We used a grid-stride loop to allow threads to process additional elements when the vector size exceeds the total number of available threads. This allows each thread to process multiple elements by incrementing its index by the total number of threads in the grid. In our AXPY operation both approaches perform the same computation:
+
+Z[i] = a * X[i] + Y[i]
+
+The execution between the two differs. With SIMD, multiple elements are processed together through vector instructions. With SIMT, multiple GPU threads independently process different elements using the same kernel instructions.
+
+#### Advantages and Disadvantages in Our Use Case
+
+| Approach | Advantages | Disadvantages |
+|---|---|---|
+| **SIMD** | Efficient for operations involving large amounts of data with the same computation. Uses vector registers to process multiple elements per instruction. Has relatively low overhead since execution happens directly on the CPU. | Limited by the available vector register width and CPU instruction set. Requires careful handling of remaining elements when the vector size is not divisible by the number of elements processed per instruction. |
+| **SIMT** | Can execute a large number of threads simultaneously. Suitable for processing large datasets and highly parallel workloads. The grid-stride loop also allows flexible handling of different input sizes. | Requires GPU kernel launches and memory management. Data movement between CPU and GPU memory can introduce overhead. Performance can also be affected by thread organization, block size, and memory access patterns. |
 
 ## AI USAGE DECLARATION 
 Generative AI was not used in the development of the kernels outlined in this project.
