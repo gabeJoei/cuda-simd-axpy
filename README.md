@@ -142,14 +142,8 @@ We examined the vector initialization and result-validation procedures in `helpe
 
 **Solution Implemented**
 
-To address the precision-related validation issue, we identified two approaches:
-
-1. **Relative error tolerance:** Replace the fixed absolute tolerance with a relative tolerance that scales with the magnitude of the expected result. This allows comparisons to account for floating-point rounding differences at different numerical scales.
-
-2. **Scaled vector initialization:** Limit the range of initialized vector values using a modulo operation, such as `i % 100`, while retaining fractional components. This keeps the input values within a smaller numerical range where single-precision arithmetic can represent small increments more accurately.
-
-The scaled initialization approach was preferred because it reduces precision loss in the test inputs while preserving the AXPY computation.
-
+We implemented a relative error tolerance instead of a fixed absolute tolerance when validating the results. This approach adjusts the acceptable difference based on the magnitude of the expected value, accounting for floating-point rounding differences at different numerical scales and improving the reliability of result validation.
+   
 ---
 
 #### Problem 2: Separating CUDA Kernel Configurations for Profiling
@@ -170,7 +164,7 @@ We applied C++ template specialization to organize the CUDA execution configurat
 
 SIMD (Single Instruction, Multiple Data) and SIMT (Single Instruction, Multiple Threads) are both approaches to parallel computing, but they differ in how instructions and data are processed.
 
-SIMD executes a single instruction on multiple data elements simultaneously using vector registers. For example, a 128-bit XMM register can process four single-precision floating-point values, while a 256-bit YMM register can process eight. This allows CPUs to perform the same operation on multiple elements using fewer instructions compared to scalar processing (Intel, n.d.). In our project, we implemented a conventional C version of the AXPY operation as the CPU baseline. Although the compiler may automatically vectorize the loop, explicit SIMD instructions such as AVX2 were not implemented in the notebook.
+SIMD executes a single instruction on multiple data elements simultaneously using vector registers. For example, a 128-bit XMM register can process four single-precision floating-point values, while a 256-bit YMM register can process eight. This allows CPUs to perform the same operation on multiple elements using fewer instructions compared to scalar processing (Intel, n.d.). In our project, we implemented a conventional C version of the AXPY operation as the CPU baseline.
 
 SIMT, on the other hand, executes multiple threads that follow the same instruction sequence on different data elements. In our CUDA implementation, each GPU thread processes vector elements independently using its assigned thread index. Threads are organized into blocks within a grid, allowing the GPU to execute many threads concurrently. Threads within a warp generally execute instructions together, although different execution paths may occur when branching is involved (NVIDIA, n.d.-a).
 
@@ -179,8 +173,6 @@ We implemented a grid-stride loop in our CUDA kernels to support vector sizes la
 In our AXPY operation, both the CPU and GPU implementations perform the same computation:
 
 `Z[i] = a * X[i] + Y[i]`
-
-However, their execution differs. The CPU baseline processes the elements through a conventional C loop, which may be automatically vectorized by the compiler. The CUDA implementation explicitly distributes the computation across multiple GPU threads using SIMT.
 
 #### Advantages and Disadvantages in Our Use Case
 
