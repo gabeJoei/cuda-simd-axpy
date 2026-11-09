@@ -30,7 +30,7 @@ Figure 1. SIMD 2^20
 
 Figure 2. SIMD 2^24
 
-![SIMD 2^27](image/SIMD3.png)
+![SIMD 2^27](image/SIM3.png)
 
 Figure 3. SIMD 2^27
 
